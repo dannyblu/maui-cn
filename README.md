@@ -16,7 +16,7 @@ Merchants must verify that their systems can use the TLSv1.2 protocol with a SHA
 
 请按照以下步骤，选择匹配您的服务器、开发语言了解详细自查步骤：
 
-* [自查前提](#prerequisites)
+* [自查前提](#自查前提)
 * [Java](#java)
 * [.NET](#net)
 * [PHP](#php)
