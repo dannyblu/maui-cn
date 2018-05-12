@@ -1,4 +1,4 @@
-# PayPal TLSv1.2 安全升级
+# TLSv1.2 安全升级
 
 The Payment Card Industry Security Standards Council (PCI SSC) [mandates](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls) that **all credit card processors must retire early versions of TLS from service by the PCI deadline**. 
 
@@ -16,13 +16,10 @@ Merchants must verify that their systems can use the TLSv1.2 protocol with a SHA
 
 请按照以下步骤，选择匹配您的服务器、开发语言了解详细自查步骤：
 
-* [自查前提](#自查前提)
+* [自查前提](#prerequisites)
 * [Java](#java)
 * [.NET](#net)
-* [PHP](#php)
-* [Python](#python)
-* [Ruby](#ruby)
-* [Node](#node)
+* [PHP / Python / Ruby / Node.js](#openssl)
 * [原生移动APP](#native-mobile-apps)
 
 * * *
@@ -35,10 +32,11 @@ Merchants must verify that their systems can use the TLSv1.2 protocol with a SHA
 
 ### Java
 
-* [Java 版本要求](#Java版本要求)
+* [Java 版本要求](#java-version)
 * [运行PayPal JAVA TLSv1.2检查](#to-verify-your-java-and-tls-versions)
 * [PayPal Java SDK版本要求](#supported-sdks-java)
 
+<a id='java-version'></a>
 #### Java版本要求
 
 > **注意:** 由于JAVA 8 中默认使用TLSv1.2连接协议，所以我们推荐升级您的JAVA到版本8。
@@ -49,71 +47,111 @@ Merchants must verify that their systems can use the TLSv1.2 protocol with a SHA
 | 6 - 7 | 支持 | <p>JAVA 6,7版本支持TLSv1.2协议，但是并没有默认启用TLSv1.2。您需要在代码中显式声明使用TLSv1.2</p><p>在JAVA启动参数中加入：<p>```-Dhttps.protocols=TLSv1.2```</p><p>或在代码中设置[`SSLContext`](http://docs.oracle.com/javase/7/docs/api/javax/net/ssl/SSLContext.html)：</p>```SSLContext context = SSLContext.getInstance("TLSv1.2");```<br>```SSLContext.setDefault(context);``` |
 | 8 | 默认启用 | 无需任何操作 |
 
+<a id='to-verify-your-java-and-tls-versions'></a>
 #### 运行JAVA TLSv1.2检查
 
-1. 下载PayPal Java TLS检查类或.jar包 [TlsCheck.java  TlsCheck.jar](java) files.
+1. 下载PayPal [TlsCheck.jave类文件 或  TlsCheck.jar包](https://github.com/paypal/TLS-update/tree/master/java)。
 
-1. In a shell on your **production system**, run:
+1. 在您的生产环境服务器上运行.jar包，检查输出信息:
 
     ```
     > java -jar TlsCheck.jar
     ```
 
-    * On success:
+    * 检查成功:
 
         ```
         Successfully connected to TLS 1.2 endpoint.
         ```
 
-    * On failure:
+    * 检查失败:
 
         ```
         Failed to connect to TLS 1.2 endpoint.
         ```
 
 <a id="supported-sdks-java"></a>
+#### PayPal Java SDK版本要求
 
-#### Supported SDKs
+除了满足以上Java环境版本要求之外，如果您使用了PayPal / Braintree JAVA SDK集成，请确保SDK也升级至合规版本或更新版本
+* PayPal JAVA SDK合规版本列表：
 
-* [PayPal](PayPal/README.md#java)
-* [Braintree](Braintree/README.md#java)
+SDK | TLSv1.2 支持版本
+--- | -------
+[REST Java-SDK](https://github.com/paypal/PayPal-Java-SDK) | [1.4.0](https://github.com/paypal/PayPal-Java-SDK/releases)
+[sdk-core](https://github.com/paypal/sdk-core-java) | [1.7.0](https://github.com/paypal/sdk-core-java/releases/tag/v1.7.0)
+[adaptivepayments](https://github.com/paypal/adaptivepayments-sdk-java) | [2.9.117](https://github.com/paypal/adaptivepayments-sdk-java/releases/tag/v2.9.117)
+[adaptiveaccounts](https://github.com/paypal/adaptiveaccounts-sdk-java) | [2.6.106](https://github.com/paypal/adaptiveaccounts-sdk-java/releases/tag/2.6.106)
+[invoice](https://github.com/paypal/invoice-sdk-java) | [2.7.117](https://github.com/paypal/invoice-sdk-java/releases/tag/v2.7.117)
+[buttonmanager](https://github.com/paypal/buttonmanager-sdk-java) | [2.7.106](https://github.com/paypal/buttonmanager-sdk-java/releases/tag/2.7.106)
+[permissions](https://github.com/paypal/permissions-sdk-java) | [2.6.109](https://github.com/paypal/permissions-sdk-java/releases/tag/v2.6.109)
+[merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-java) | [2.14.117](https://github.com/paypal/merchant-sdk-java/releases/tag/v2.14.117)
+[legacy (merchant 1.x)](https://github.com/paypal/PayPal-Legacy-Java-SDK/) | [1.1.0](https://github.com/paypal/PayPal-Legacy-Java-SDK/releases/tag/v1.1.0)
+* Braintree JAVA SDK合规版本
+
+SDK | TLSv1.2 支持版本
+--- | -------
+[braintree_java](https://github.com/braintree/braintree_java/) | [2.67.0](https://github.com/braintree/braintree_java/releases/)
 
 * * *
 
 ### .NET
 
-* [.NET requirements](#net-requirements)
-* [To verify your .NET and TLS versions](#to-verify-your-net-and-tls-versions)
-* [Supported SDKs](#supported-sdks-net)
+* [.NET framework版本要求](#net-requirements)
+* [运行PayPal .NET TLSv1.2检查](#to-verify-your-net-and-tls-versions)
+* [PayPal .NET SDK版本要求](#supported-sdks-net)
 
-#### .NET requirements
+<a id='net-requirements'></a>
+#### .NET framework版本要求
 
-To enable TLSv1.2, you must install the .NET framework 4.5 or later.
+为了启用TLSv1.2，您需要升级.Net Framework至4.5或更高版本。
 
-#### To verify your .NET and TLS versions
+> 如果您的生产环境仍使用Windows Server 2008 R2服务器，还需要在[注册表中开启TLSv1.2](https://support.microsoft.com/zh-cn/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in)
 
-1. Set the TLS version through [`ServicePointManager.SecurityProtocol` enumeration](https://msdn.microsoft.com/en-us/library/system.net.securityprotocoltype(v=vs.110).aspx).
+<a id='to-verify-your-net-and-tls-versions'></a>
+#### 运行PayPal .NET TLSv1.2检查
 
-1. To verify that you have .NET framework 4.5 or later, run [NetFrameworkVersions](net/NetFrameworkVersions) on the console of your production system. If you do not have .NET 4.5 or later, upgrade it.
+1. 确保您的生产环境 .NET Framework已升级至4.5后，在[SecurityProtocolType枚举](https://msdn.microsoft.com/zh-cn/library/system.net.securityprotocoltype(v=vs.110).aspx)中指定```Tls12```
+```System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;```
 
-1. In a shell on your **production system**, run [TlsCheck](net/TlsCheck):
+
+2. 下载PayPal .Net检查执行文件[TlsCheck](https://github.com/paypal/TLS-update/tree/master/net/TlsCheck)， 并在您的生产环境服务器上运行:
 
     ```
     > TlsCheck.exe
     ```
 
-    * On success:
+    * 检查成功:
 
         ```
         PayPal_Connection_OK
         ```
 
 <a id="supported-sdks-net"></a>
+#### PayPal .NET SDK版本要求
 
-#### Supported SDKs
+除了满足以上.NET环境版本要求之外，如果您使用了PayPal / Braintree .NET SDK集成，请确保升级至合规版本或更新版本
 
-* [PayPal](PayPal/README.md#net)
-* [Braintree](Braintree/README.md#net)
+* PayPal .NET SDK合规版本列表
+
+SDK | TLSv1.2 支持版本
+--- | -------
+[REST NET-SDK](https://github.com/paypal/PayPal-NET-SDK) | [1.7.3](https://github.com/paypal/PayPal-NET-SDK/releases)
+[sdk-core](https://github.com/paypal/sdk-core-dotnet) | [1.7.1](https://github.com/paypal/sdk-core-dotnet/releases)
+[adaptivepayments](https://github.com/paypal/adaptivepayments-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+[adaptiveaccounts](https://github.com/paypal/adaptiveaccounts-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+[invoice](https://github.com/paypal/invoice-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+[buttonmanager](需要升级至://github.com/paypal/buttonmanager-sdk-dotnet) | Requires [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+[permissions](https://github.com/paypal/permissions-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+[merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-dotnet) | Requires [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+老版本 (merchant 1.x) | 不支持TLSv1.2 - 请升级至 [merchant 2.x版本](https://github.com/paypal/merchant-sdk-dotnet/wiki/Upgrade-Process-from-Legacy-Merchant-SDK)
+
+* Braintree .NET SDK合规版本
+
+
+SDK | TLSv1.2 支持版本
+--- | -------
+[braintree_dotnet](https://github.com/braintree/braintree_dotnet) | [3.1.0](https://github.com/braintree/braintree_dotnet/releases/)
 
 * * *
 
