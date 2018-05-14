@@ -137,7 +137,7 @@
     [adaptivepayments](https://github.com/paypal/adaptivepayments-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [adaptiveaccounts](https://github.com/paypal/adaptiveaccounts-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [invoice](https://github.com/paypal/invoice-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
-    [buttonmanager](http://github.com/paypal/buttonmanager-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+    [buttonmanager](https://github.com/paypal/buttonmanager-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [permissions](https://github.com/paypal/permissions-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     老版本 (merchant 1.x) | 不支持TLSv1.2 - 请升级至 [merchant 2.x版本](https://github.com/paypal/merchant-sdk-dotnet/wiki/Upgrade-Process-from-Legacy-Merchant-SDK)
