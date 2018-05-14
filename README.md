@@ -82,7 +82,7 @@
     [buttonmanager](https://github.com/paypal/buttonmanager-sdk-java) | [2.7.106](https://github.com/paypal/buttonmanager-sdk-java/releases/tag/2.7.106)
     [permissions](https://github.com/paypal/permissions-sdk-java) | [2.6.109](https://github.com/paypal/permissions-sdk-java/releases/tag/v2.6.109)
     [merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-java) | [2.14.117](https://github.com/paypal/merchant-sdk-java/releases/tag/v2.14.117)
-    [legacy (merchant 1.x)](https://github.com/paypal/PayPal-Legacy-Java-SDK/) | [1.1.0](https://github.com/paypal/PayPal-Legacy-Java-SDK/releases/tag/v1.1.0)
+    [老版本 (merchant 1.x)](https://github.com/paypal/PayPal-Legacy-Java-SDK/) | [1.1.0](https://github.com/paypal/PayPal-Legacy-Java-SDK/releases/tag/v1.1.0)
 * Braintree JAVA SDK合规版本：
 
     SDK | TLSv1.2 支持版本
@@ -137,9 +137,9 @@
     [adaptivepayments](https://github.com/paypal/adaptivepayments-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [adaptiveaccounts](https://github.com/paypal/adaptiveaccounts-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [invoice](https://github.com/paypal/invoice-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
-    [buttonmanager](需要升级至://github.com/paypal/buttonmanager-sdk-dotnet) | Requires [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+    [buttonmanager](http://github.com/paypal/buttonmanager-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     [permissions](https://github.com/paypal/permissions-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
-    [merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-dotnet) | Requires [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
+    [merchant (merchant 2.x)](https://github.com/paypal/merchant-sdk-dotnet) | 需要升级至 [sdk-core 1.7.1 或更高版本](https://github.com/paypal/sdk-core-dotnet/releases)
     老版本 (merchant 1.x) | 不支持TLSv1.2 - 请升级至 [merchant 2.x版本](https://github.com/paypal/merchant-sdk-dotnet/wiki/Upgrade-Process-from-Legacy-Merchant-SDK)
 
 * Braintree .NET SDK合规版本
